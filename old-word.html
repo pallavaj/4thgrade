@@ -79,88 +79,6 @@
     <script>
         var spellingBee = [];
         spellingBee[0] = [
-            "Adds",
-            "Sit",
-            "Cry",
-            "Put",
-            "Look",
-            "Hey",
-            "Tell",
-            "None",
-            "Need",
-            "Poke",
-            "Drag",
-            "Off",
-            "Long",
-            "Grass",
-            "Came",
-            "Make",
-            "Had",
-            "Trees",
-            "Can",
-            "Not",
-            "Plan",
-            "Sink",
-            "Tote",
-            "Hint",
-            "Rice",
-            "Doll",
-            "Bill",
-            "Pants",
-            "Nets",
-            "Pod",
-            "Cups",
-            "Page",
-            "Top",
-            "Trap",
-            "map",
-            "Toys",
-            "Ten",
-            "Food",
-            "Five",
-            "Tiny",
-            "Nose",
-            "Meal",
-            "Moo",
-            "Share",
-            "Help",
-            "Like",
-            "Hot",
-            "Feel",
-            "Ears",
-            "Cute",
-            "Barked",
-            "Sway",
-            "Harsh",
-            "Porch",
-            "Crops",
-            "Order",
-            "Stumped",
-            "Blue",
-            "Sorry",
-            "Many",
-            "Blast",
-            "Shelf",
-            "Chores",
-            "Bottom",
-            "Busy",
-            "Copy",
-            "Tales",
-            "Stairs",
-            "White",
-            "Speck",
-            "Leave",
-            "Pace",
-            "Party",
-            "Smell",
-            "Moon",
-            "washing",
-            "Two",
-            "trash",
-            "Bobbed"
-        ];
-
-        spellingBee[1] = [
             "Some",
             "What",
             "few",
@@ -262,7 +180,7 @@
             "Whizzed", "Weave"
         ];
 
-        spellingBee[2] = [
+        spellingBee[1] = [
             "Slivers",
             "Spellbound",
             "Former",
@@ -364,7 +282,7 @@
             "Angola", "Contours"
         ];
 
-        spellingBee[3] = [
+        spellingBee[2] = [
             "Republic",
             "Paradise",
             "Vertical",
@@ -467,7 +385,7 @@
             "Forsooth"
         ]
 
-        spellingBee[4] = [
+        spellingBee[3] = [
             "Masa",
             "Leander",
             "Pneumonia",
@@ -568,7 +486,7 @@
             console.log(msg.text);
             window.speechSynthesis.speak(msg);
 
-            if (msg.text !== endMsg) {
+            if(msg.text !== endMsg){
                 var anchor = document.createElement("a");
                 anchor.setAttribute('onclick', 'speakLoud("' + msg.text + '")');
                 anchor.setAttribute('class', 'speakWord');
@@ -609,7 +527,7 @@
             }
             localStorage.setItem("retestWords", JSON.stringify(retestWords));
             setRetestWords();
-            printSpellingList(5);
+            printSpellingList(4);
             //spellingBee[4] = retestWords;
         }
 
@@ -621,7 +539,7 @@
             } catch (error) {
                 retestWords = [];
             }
-            spellingBee[5] = retestWords;
+            spellingBee[4] = retestWords;
         }
 
         function printSpellingList(idx) {
@@ -646,14 +564,14 @@
             var mylabel = document.getElementById("spellingBee");
             mylabel.innerText = msg.text;
             window.speechSynthesis.speak(msg);
-            if (msg.text !== endMsg) {
+            if(msg.text !== endMsg){
                 var anchor = document.createElement("a");
                 anchor.setAttribute('onclick', 'speakLoud("' + msg.text + '")');
                 anchor.setAttribute('class', 'speakWord');
                 anchor.innerText = msg.text;
                 anchor.href = "javascript:void(0)";
                 document.getElementById("history").prepend(anchor);
-            }
+            }            
         }
     </script>
 </head>
@@ -666,12 +584,11 @@
         </div>
         <div class="spelling_container">
             <select id="chooseLesson" onchange="setRetestWords()">
-                <option value=0> First 80 words</option>
+                <option value=0> First 100 words</option>
                 <option value=1> Second 100 words</option>
                 <option value=2> Third 100 words</option>
-                <option value=3> Fourth 100 words</option>
-                <option value=4> Remaining words</option>
-                <option value=5> Retest words</option>
+                <option value=3> Remaining words</option>
+                <option value=4> Retest words</option>
             </select>
             <h1 id="spellingBee">Welcome</h1>
             <button class="btn-next" id="btn-next" onclick="readAWord()">Next word</button>
@@ -680,38 +597,32 @@
             <button class="btn-repeat" id="btn-remove-retest" onclick="addRemoveRetest(-1)">Remove from Retest</button>
             <div class="spelling-container">
                 <div>
-                    <h2>0 - 80</h2>
+                    <h2>0 - 100</h2>
                     <div id="spellingList0">
 
                     </div>
                 </div>
                 <div>
-                    <h2>81 - 180</h2>
+                    <h2>101 - 200 </h2>
                     <div id="spellingList1">
 
                     </div>
                 </div>
                 <div>
-                    <h2>181 - 280 </h2>
+                    <h2>201 - 300 </h2>
                     <div id="spellingList2">
 
                     </div>
                 </div>
                 <div>
-                    <h2>281 - 380 </h2>
+                    <h2>301 - end </h2>
                     <div id="spellingList3">
 
                     </div>
                 </div>
                 <div>
-                    <h2>381 - end </h2>
-                    <div id="spellingList4">
-
-                    </div>
-                </div>
-                <div>
                     <h2>Retest </h2>
-                    <div id="spellingList5">
+                    <div id="spellingList4">
 
                     </div>
                 </div>
@@ -726,7 +637,6 @@
         printSpellingList(2);
         printSpellingList(3);
         printSpellingList(4);
-        printSpellingList(5);
     </script>
 </body>
 
