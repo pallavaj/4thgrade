@@ -1,0 +1,628 @@
+<!DOCTYPE>
+<html lang="en" xml:lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Spelling Bee - Difficulty One BEE</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .spelling_container {
+            text-align: center;
+            padding-top: 8vh;
+        }
+
+        #spellingBee {
+            font-size: 10vh;
+            color: blue;
+        }
+
+        button {
+            font-size: 4vh;
+            border-radius: 5px;
+            font-family: cursive;
+            padding: 0 2vh;
+            margin: 0 2vh;
+            cursor: pointer;
+            outline: none;
+            box-shadow: 0 4px #999;
+        }
+
+        button[data-disabled] {
+            background-color: grey;
+        }
+
+        .btn-next {
+            border-color: #04AA6D;
+            color: green;
+        }
+
+        .btn-next:hover {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        /* Blue */
+        .btn-repeat {
+            border-color: #2196F3;
+            color: dodgerblue;
+        }
+
+        .btn-repeat:hover {
+            background: #2196F3;
+            color: white;
+        }
+
+        .spelling-container {
+            display: flex;
+            justify-content: center;
+            gap: 1vw;
+        }
+
+        #chooseLesson {
+            font-size: 2vh;
+            border-radius: 8px;
+            padding: 4px 10px;
+        }
+
+        a.speakWord {
+            display: block;
+        }
+    </style>
+    <script>
+        var spellingBee = [];
+        spellingBee[0] = [
+            "Adds",
+            "Sit",
+            "Cry",
+            "Put",
+            "Look",
+            "Hey",
+            "Tell",
+            "none",
+            "Need",
+            "Poke",
+            "Drag",
+            "Off",
+            "Long",
+            "Grass",
+            "Came",
+            "Make",
+            "Had",
+            "Trees",
+            "Can",
+            "Not",
+            "plan",
+            "Sink",
+            "Tote",
+            "Hint",
+            "Rice",
+            "Doll",
+            "Bill",
+            "Pants",
+            "Nets",
+            "Pod",
+            "Cups",
+            "Page",
+            "Top",
+            "Trap",
+            "Map",
+            "Toys",
+            "Ten",
+            "Food",
+            "Five",
+            "Tiny",
+            "Nose",
+            "Meal",
+            "moo",
+            "Share",
+            "Help",
+            "Like",
+            "Hot",
+            "feel",
+            "Ears",
+            "Cute",
+            "Barked",
+            "Sway",
+            "Harsh",
+            "Porch",
+            "Crops",
+            "Order",
+            "Stumped",
+            "Blue",
+            "Sorry",
+            "Many",
+            "Blast",
+            "Shelf",
+            "Shores",
+            "Bottom",
+            "Busy",
+            "Copy",
+            "Tales",
+            "Stairs",
+            "White",
+            "Speck",
+            "Leave",
+            "Pace",
+            "Party",
+            "Smell",
+            "Moon",
+            "Washing",
+            "Two",
+            "trash",
+            "Bobbed",
+            "Some",
+            "What",
+            "Few",
+            "Pail",
+            "Area",
+            "Story",
+            "Sheesh",
+            "Sole",
+            "Files",
+            "Wiggle",
+            "Baggy",
+            "phone",
+            "blame",
+            "Skipped",
+            "Crafty",
+            "Scars",
+            "Table",
+            "Roots",
+            "Stinky",
+            "only",
+            "bones",
+            "marry",
+            "swept",
+            "chunks",
+            "Forget",
+            "Rare",
+            "Feedback",
+            "Scared",
+            "Lousy",
+            "Coop",
+            "During",
+            "Faith",
+            "Bandmates",
+            "Quiet",
+            "Minute",
+            "Streak",
+            "freedom",
+            "stuttered",
+            "Fudge",
+            "Damaged",
+            "Frantic",
+            "Clash",
+            "Funky",
+            "Tower",
+            "Swoop",
+            "Greasy",
+            "Gravy",
+            "Display",
+            "Growling",
+            "Visit",
+            "Blessings",
+            "Peacock",
+            "Ohio",
+            "Elves",
+            "Uplift",
+            "Everyone",
+            "Another",
+            "Beetle",
+            "Sights",
+            "Choose",
+            "Wonder",
+            "Belongs",
+            "Model",
+            "Fasting",
+            "Until",
+            "Nobody",
+            "Color",
+            "Colour",
+            "Curly",
+            "Heavy",
+            "Build",
+            "Greeting",
+            "Gradual",
+            "Ferocious",
+            "Permission",
+            "Towel",
+            "Sundae",
+            "Ornament",
+            "Rooster",
+            "Scold",
+            "Organza",
+            "Fragile",
+            "Galaxy",
+            "Complaint",
+            "Curries",
+            "Tennis",
+            "Grumbling",
+            "Garlic",
+            "Hula",
+            "Reactionary",
+            "Muscular",
+            "Drizzle",
+            "Accurate",
+            "Studio",
+            "Illusionist",
+            "Genetic",
+            "Levity",
+            "Moisture",
+            "Toughness",
+            "Tasteless",
+            "Astute",
+            "Turtle",
+            "Pinkerton",
+            "Fortune",
+            "Sluggard",
+            "Bedlam",
+            "Shortfall",
+            "Cowlick",
+            "Opinionated",
+            "Slogan",
+            "Triumphant",
+            "Parenthetical",
+            "Listener",
+            "Guardian",
+            "Dwindled",
+            "Fraught",
+            "Sturdy",
+            "Treadmill",
+            "Originate",
+            "Forfend",
+            "Forefend",
+            "Eavesdrop",
+            "January",
+            "Scruple",
+            "Moxie",
+            "Winnow",
+            "Incentive",
+            "Admirer",
+            "Emotional",
+            "Chia",
+            "Raspberry",
+            "Bogus",
+            "Recoup",
+            "Bookworm",
+            "Veteran",
+            "Erase",
+            "Downcast",
+            "Spinal",
+            "Demolition",
+            "Gargantuan",
+            "Salsa",
+            "Chaotic",
+            "Shrimp",
+            "Mandate",
+            "Turret",
+            "Pigeon",
+            "Satellite",
+            "Parasite",
+            "Favorite",
+            "CASCADE",
+            "DANDELION",
+            "FAMOUS",
+            "PRISTINE",
+            "GOLDEN",
+            "MODESTY",
+            "AMPHIBIAN",
+            "JEALOUSY",
+            "Remedial",
+            "Vouch",
+            "Trivia",
+            "Shoulder",
+            "Zebra",
+            "butterscotch",
+            "apron",
+            "beagle",
+            "kidney",
+            "wistful",
+            "raven",
+            "fructose",
+            "Amazon",
+            "Companion",
+
+
+        ];
+
+        spellingBee[1] = [
+            "Panorama",
+            "Gimmick",
+            "Flannel",
+            "cucumber",
+            "McMansion",
+            "Janitor",
+            "lionize",
+            "headdress",
+            "Ludicrous",
+            "Pear",
+            "System",
+            "Pedigree",
+            "Empty",
+            "Amulet",
+            "Guess",
+            "Magician",
+            "Carrot",
+            "Meteor",
+            "Distraught",
+            "Freight",
+            "Honeybee",
+            "Blemish",
+            "Crumpet",
+            "Blizzard",
+            "Squirm",
+            "Harmonious",
+            "Lawyer",
+            "Valiant",
+            "Purse",
+            "Raisin",
+            "Trumpet",
+            "Bias",
+            "Lettuce",
+            "Shamrock",
+            "Americana",
+            "Monopolize",
+            "Water",
+            "Marathon",
+            "Omission",
+            "Newbie",
+            "Spreadsheet",
+            "Badger",
+            "Fortification",
+            "hydra",
+            "Grouse",
+            "Manta",
+            "Astonish",
+            "Fashionista",
+            "Stubble",
+            "genius",
+            "Nuance",
+            "Stencil",
+            "Penguin",
+            "Freckle",
+            "Blooper",
+            "Misconception",
+            "lambkin",
+            "Chowder",
+            "Sunflower",
+            "Lambasted",
+            "Volumetric",
+            "Flattery",
+            "Simmer",
+            "Whisk",
+            "bathtub",
+            "Fantastically",
+            "Failure",
+            "Tolerable",
+            "mosquito",
+            "Target",
+            "Angora",
+            "Snippet",
+            "Hodgepodge",
+            "Verbiage",
+            "Nephew",
+            "Imbibe",
+            "Savvy",
+            "Reckon",
+            "Boorish",
+            "Tarmac",
+            "Iteration",
+            "Nurture",
+            "Volcano",
+            "Forensics",
+            "Miraculous",
+            "Trendy",
+            "Permafrost",
+            "Iceberg",
+            "Cactus",
+            "Nationalism",
+            "Leeway",
+            "Pilfered",
+            "Rollicking",
+            "Quart",
+            "Lactose",
+            "Domineering",
+            "onion",
+            "Vault",
+            "Junior",
+            "Hamlet",
+            "Jubilant",
+
+        ];
+
+        spellingBee[2] = [
+            "coming soon"
+        ]
+
+        spellingBee[3] = [
+            "coming soon"
+        ]
+
+        var mymessage = "Welcome"
+
+        var endMsg = "Awesome! No words remaining"
+
+        var msg = new SpeechSynthesisUtterance();
+        const synth = window.speechSynthesis;
+        const voices = synth.getVoices();
+
+        function readAWord() {
+            var lessonChoosen = document.querySelector("#chooseLesson").value;
+            if (spellingBee[lessonChoosen].length) {
+                msg.text = spellingBee[lessonChoosen].splice(spellingBee[lessonChoosen].length * Math.random() | 0, 1)[
+                    0];
+                var mylabel = document.getElementById("spellingBee");
+
+            } else {
+                //document.getElementById("btn-next").setAttribute("data-disabled","disabled")
+                msg.text = endMsg;
+            }
+            mymessage = msg.text;
+            var mylabel = document.getElementById("spellingBee");
+            mylabel.innerText = msg.text;
+            console.log(msg.text);
+            window.speechSynthesis.speak(msg);
+
+            if (msg.text !== endMsg) {
+                var anchor = document.createElement("a");
+                anchor.setAttribute('onclick', 'speakLoud("' + msg.text + '")');
+                anchor.setAttribute('class', 'speakWord');
+                anchor.innerText = msg.text;
+                anchor.href = "javascript:void(0)";
+                document.getElementById("history").prepend(anchor);
+            }
+
+        }
+
+        function repeatWord() {
+            msg.text = mymessage;
+            window.speechSynthesis.speak(msg);
+        }
+        /**
+         * task = null, 0 //Add
+         * task = -1, // remove
+         * **/
+        function addRemoveRetest(task) {
+            let retestWordsStorage = localStorage.getItem("retestWords");
+            let retestWords = [];
+            try {
+                retestWords = retestWordsStorage ? JSON.parse(retestWordsStorage) : [];
+            } catch (error) {
+                retestWords = [];
+            }
+
+            let currentIndex = retestWords.indexOf(msg.text)
+
+            if (task != '-1' && task != -1) {
+                if (currentIndex == -1 && msg.text != endMsg) {
+                    retestWords.push(msg.text)
+                }
+            } else {
+                if (currentIndex != -1) {
+                    retestWords.splice(currentIndex, 1);
+                }
+            }
+            localStorage.setItem("retestWords", JSON.stringify(retestWords));
+            setRetestWords();
+            printSpellingList(4);
+            //spellingBee[4] = retestWords;
+        }
+
+        function setRetestWords() {
+            let retestWordsStorage = localStorage.getItem("retestWords");
+            let retestWords = [];
+            try {
+                retestWords = retestWordsStorage ? JSON.parse(retestWordsStorage) : [];
+            } catch (error) {
+                retestWords = [];
+            }
+            spellingBee[4] = retestWords;
+        }
+
+        function printSpellingList(idx) {
+            var divElem = document.createElement('div');
+            spellingBee[idx].sort();
+            for (var i = 0; i < spellingBee[idx].length; i++) {
+                var anchor = document.createElement("a");
+                anchor.setAttribute('onclick', 'speakLoud("' + spellingBee[idx][i] + '")');
+                anchor.setAttribute('class', 'speakWord');
+                anchor.innerText = spellingBee[idx][i];
+                anchor.href = "javascript:void(0)";
+
+                divElem.appendChild(anchor);
+            }
+            var spellingLists = document.getElementById("spellingList" + idx);
+            spellingLists.replaceChildren();
+            spellingLists.appendChild(divElem);
+        }
+
+        function speakLoud(txtmsg) {
+            msg.text = txtmsg;
+            var mylabel = document.getElementById("spellingBee");
+            mylabel.innerText = msg.text;
+            window.speechSynthesis.speak(msg);
+            if (msg.text !== endMsg) {
+                var anchor = document.createElement("a");
+                anchor.setAttribute('onclick', 'speakLoud("' + msg.text + '")');
+                anchor.setAttribute('class', 'speakWord');
+                anchor.innerText = msg.text;
+                anchor.href = "javascript:void(0)";
+                document.getElementById("history").prepend(anchor);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div <div class="container">
+
+        <div class="history" id="history">
+
+        </div>
+        <div class="spelling_container">
+            <select id="chooseLesson" onchange="setRetestWords()">
+                <option value=0> First 250 words</option>
+                <option value=1> Second 250 words</option>
+                <option value=2> Third 250 words</option>
+                <option value=3> Remaining words</option>
+                <option value=4> Retest words</option>
+            </select>
+            <h1 id="spellingBee">Welcome</h1>
+            <button class="btn-next" id="btn-next" onclick="readAWord()">Next word</button>
+            <button class="btn-repeat" id="btn-repeat" onclick="repeatWord()"> Repeat</button>
+            <button class="btn-repeat" id="btn-add-retest" onclick="addRemoveRetest(0)">Add to Retest</button>
+            <button class="btn-repeat" id="btn-remove-retest" onclick="addRemoveRetest(-1)">Remove from Retest</button>
+            <div class="spelling-container">
+                <div>
+                    <h2>0 - 250</h2>
+                    <div id="spellingList0">
+
+                    </div>
+                </div>
+                <div>
+                    <h2>151 - 500 </h2>
+                    <div id="spellingList1">
+
+                    </div>
+                </div>
+                <div>
+                    <h2>501 - 750 </h2>
+                    <div id="spellingList2">
+
+                    </div>
+                </div>
+                <div>
+                    <h2>751 - end </h2>
+                    <div id="spellingList3">
+
+                    </div>
+                </div>
+                <div>
+                    <h2>Retest </h2>
+                    <div id="spellingList4">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        setRetestWords();
+        printSpellingList(0);
+        printSpellingList(1);
+        printSpellingList(2);
+        printSpellingList(3);
+        printSpellingList(4);
+    </script>
+</body>
+
+</html>
