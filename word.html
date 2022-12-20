@@ -1,81 +1,10 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html lang="en" xml:lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Spelling Bee Test</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .container {
-            display: flex;
-            justify-content: center;
-        }
-
-        .spelling_container {
-            text-align: center;
-            padding-top: 8vh;
-        }
-
-        #spellingBee {
-            font-size: 10vh;
-            color: blue;
-        }
-
-        button {
-            font-size: 4vh;
-            border-radius: 5px;
-            font-family: cursive;
-            padding: 0 2vh;
-            margin: 0 2vh;
-            cursor: pointer;
-            outline: none;
-            box-shadow: 0 4px #999;
-        }
-
-        button[data-disabled] {
-            background-color: grey;
-        }
-
-        .btn-next {
-            border-color: #04AA6D;
-            color: green;
-        }
-
-        .btn-next:hover {
-            background-color: #04AA6D;
-            color: white;
-        }
-
-        /* Blue */
-        .btn-repeat {
-            border-color: #2196F3;
-            color: dodgerblue;
-        }
-
-        .btn-repeat:hover {
-            background: #2196F3;
-            color: white;
-        }
-
-        .spelling-container {
-            display: flex;
-            justify-content: center;
-            gap: 1vw;
-        }
-
-        #chooseLesson {
-            font-size: 2vh;
-            border-radius: 8px;
-            padding: 4px 10px;
-        }
-
-        a.speakWord {
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="/4thgrade/css/style.css" /> 
     <script>
         var spellingBee = [];
         spellingBee[0] = [
@@ -655,7 +584,8 @@
                 document.getElementById("history").prepend(anchor);
             }
         }
-    </script>
+
+   </script>
 </head>
 
 <body>
@@ -665,6 +595,14 @@
 
         </div>
         <div class="spelling_container">
+            <div class="subpages">
+                <ul class="subpageslist">
+                    <li class="subpageslinks active">Easy</li>
+                    <li class="subpageslinks"><a href="/4thgrade/1/">Difficulty One</a></li>
+                    <li class="subpageslinks"><a href="/4thgrade/2/">Difficulty Two</a></li>
+                    <li class="subpageslinks"><a href="/4thgrade/3/">Difficulty Three</a></li>
+                </ul>
+            </div>
             <select id="chooseLesson" onchange="setRetestWords()">
                 <option value=0> First 80 words</option>
                 <option value=1> Second 100 words</option>
@@ -673,7 +611,10 @@
                 <option value=4> Remaining words</option>
                 <option value=5> Retest words</option>
             </select>
-            <h1 id="spellingBee">Welcome</h1>
+            <h1 id="spellingBee" onclick="getWordDefinitions()">Welcome</h1>
+            <div id="_definitions_">
+
+            </div>
             <button class="btn-next" id="btn-next" onclick="readAWord()">Next word</button>
             <button class="btn-repeat" id="btn-repeat" onclick="repeatWord()"> Repeat</button>
             <button class="btn-repeat" id="btn-add-retest" onclick="addRemoveRetest(0)">Add to Retest</button>
@@ -728,6 +669,6 @@
         printSpellingList(4);
         printSpellingList(5);
     </script>
+    <script src="/4thgrade/js/app.js" ></script>
 </body>
-
 </html>
