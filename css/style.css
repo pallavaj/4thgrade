@@ -15,6 +15,7 @@ body {
 #spellingBee {
     font-size: 10vh;
     color: blue;
+    cursor: pointer;
 }
 
 button {
