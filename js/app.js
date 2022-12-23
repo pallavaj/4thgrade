@@ -1,3 +1,4 @@
+let sentence = new SpeechSynthesisUtterance();
 const baseurl = 'https://api.dictionaryapi.dev/api/v2/entries/en/';
 const definition = document.getElementById('_definitions_');
 const fetchWordDefinitions = async word => {
@@ -24,8 +25,6 @@ const getWordDefinitions = () => {
             definition.innerHTML += `<p>Error: Could not retrive any defintions for ${word}.</p>`;
         });
 };
-
-var sentence = new SpeechSynthesisUtterance();
 
 function readSentence(obj) {
     sentence.text = obj.innerText;
