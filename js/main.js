@@ -43,6 +43,14 @@ function repeatWord() {
     msg.text = mymessage;
     window.speechSynthesis.speak(msg);
 }
+function readSpelling(){
+    let a = mymessage.split("");
+    let b = a.toString()
+    let c = b.replaceAll(",", ", ");
+    msg.text = c;
+    window.speechSynthesis.speak(msg);
+
+}
 /**
  * task = null, 0 //Add
  * task = -1, // remove
