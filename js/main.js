@@ -32,7 +32,8 @@ function readAWord() {
     try {
         let definition = document.getElementById('_definitions_');
         definition.innerHTML = '';
-    
+        let count = document.getElementById('_count_');
+        if(count)count.innerHTML = spellingBee[lessonChoosen].length;
     } catch (error) {
         
     }
