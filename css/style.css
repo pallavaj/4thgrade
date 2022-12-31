@@ -82,3 +82,11 @@ a.speakWord {
 .subpageslist{
     list-style: none;
 }
+._count_{
+    background-color: yellow;
+    color: red;
+    font-weight: bold;
+}
+.remainingWords{
+    margin: 8px 0 0 0;
+}
