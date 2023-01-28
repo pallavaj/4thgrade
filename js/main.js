@@ -58,7 +58,7 @@ function readAWord() {
     mymessage = msg.text;
     let mylabel = document.getElementById("spellingBee");
     mylabel.innerText = msg.text;
-    console.log(msg.text);
+    addhelpLinks(mylabel,msg.text)
 
     //Voice selection
     let selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
@@ -166,6 +166,7 @@ function speakLoud(txtmsg) {
     msg.text = txtmsg;
     let mylabel = document.getElementById("spellingBee");
     mylabel.innerText = msg.text;
+    addhelpLinks(mylabel, msg.text)
 
     //Voice selection
     let selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
@@ -190,4 +191,25 @@ function speakLoud(txtmsg) {
     } catch (error) {
         
     }
+}
+function addhelpLinks(mylabel, txt){
+    let mw_link =  document.getElementById("mw_link");
+    let google_link =  document.getElementById("google_link");
+    if(google_link == null){
+        google_link = document.createElement("a")
+        google_link.setAttribute('id', 'google_link');
+        mylabel.after(google_link);     
+    }
+    if(mw_link == null){
+        mw_link = document.createElement("a")
+        mw_link.setAttribute('id', 'mw_link');
+        mylabel.after(mw_link);
+    }
+    google_link.setAttribute('href', 'https://www.google.com/search?q='+encodeURI(txt))
+    google_link.setAttribute('target', '_blank');
+    google_link.innerText = "Google Search";
+
+    mw_link.setAttribute('href', 'https://www.merriam-webster.com/dictionary/'+encodeURI(txt))
+    mw_link.setAttribute('target', '_blank');
+    mw_link.innerText = "Dictionary";
 }

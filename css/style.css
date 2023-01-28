@@ -16,6 +16,7 @@ body {
     font-size: 10vh;
     color: blue;
     cursor: pointer;
+    line-height: 1;
 }
 
 button {
@@ -89,4 +90,15 @@ a.speakWord {
 }
 .remainingWords{
     margin: 8px 0 0 0;
+}
+#mw_link{
+    top: -60;
+    font-size: 20px;
+    position: relative;
+}
+.wordContainer{
+    padding:30px 0;
+}
+#voiceSelect{
+    display: none;
 }
