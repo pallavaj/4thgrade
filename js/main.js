@@ -63,7 +63,7 @@ function readAWord() {
     //Voice selection
     let selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
     console.log(selectedOption);
-    msg.voice = voices.find((v) => v.name === selectedOption);
+    //msg.voice = voices.find((v) => v.name === selectedOption);
     //Voice selection end
 
     window.speechSynthesis.speak(msg);
@@ -92,7 +92,7 @@ function repeatWord() {
     //Voice selection
     let selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
     console.log(selectedOption);
-    msg.voice = voices.find((v) => v.name === selectedOption);
+    //msg.voice = voices.find((v) => v.name === selectedOption);
     //Voice selection end
     window.speechSynthesis.speak(msg);
 }
@@ -170,7 +170,7 @@ function speakLoud(txtmsg) {
     //Voice selection
     let selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
     console.log(selectedOption);
-    msg.voice = voices.find((v) => v.name === selectedOption);
+    //msg.voice = voices.find((v) => v.name === selectedOption);
     //Voice selection end
 
 
