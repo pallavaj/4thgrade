@@ -1,10 +1,50 @@
 let mymessage = "Welcome"
 
 let endMsg = "Awesome! No words remaining"
+let voiceSelect = document.createElement("select");
+voiceSelect.setAttribute('id', 'voiceSelect');
+let subpages = document.querySelector('.subpages');
+    subpages.before(voiceSelect);
 
 let msg = new SpeechSynthesisUtterance();
 const synth = window.speechSynthesis;
-const voices = synth.getVoices();
+let voices = synth.getVoices();
+console.log(voices);
+if(voices.length){
+    for (let i = 0; i < voices.length; i++) {
+        const option = document.createElement('option');
+        option.textContent = `${voices[i].name} (${voices[i].lang})`;
+    
+        if (voices[i].default) {
+          option.textContent += ' — DEFAULT';
+        }
+    
+        option.setAttribute('data-lang', voices[i].lang);
+        option.setAttribute('data-name', voices[i].name);
+        document.getElementById("voiceSelect").appendChild(option);
+      }
+}else{
+synth.onvoiceschanged = function() {
+    voices = synth.getVoices();
+    console.log(voices);
+    for (let i = 0; i < voices.length; i++) {
+        const option = document.createElement('option');
+        option.textContent = `${voices[i].name} (${voices[i].lang})`;
+    
+        if (voices[i].default) {
+          option.textContent += ' — DEFAULT';
+        }
+    
+        option.setAttribute('data-lang', voices[i].lang);
+        option.setAttribute('data-name', voices[i].name);
+        document.getElementById("voiceSelect").appendChild(option);
+      }
+
+};
+}
+
+//<select id="voiceSelect"></select>
+
 
 function readAWord() {
     let lessonChoosen = document.querySelector("#chooseLesson").value;
@@ -19,6 +59,13 @@ function readAWord() {
     let mylabel = document.getElementById("spellingBee");
     mylabel.innerText = msg.text;
     console.log(msg.text);
+
+    //Voice selection
+    let selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+    console.log(selectedOption);
+    msg.voice = voices.find((v) => v.name === selectedOption);
+    //Voice selection end
+
     window.speechSynthesis.speak(msg);
 
     if (msg.text !== endMsg) {
@@ -42,6 +89,11 @@ function readAWord() {
 
 function repeatWord() {
     msg.text = mymessage;
+    //Voice selection
+    let selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+    console.log(selectedOption);
+    msg.voice = voices.find((v) => v.name === selectedOption);
+    //Voice selection end
     window.speechSynthesis.speak(msg);
 }
 function readSpelling(){
@@ -114,6 +166,14 @@ function speakLoud(txtmsg) {
     msg.text = txtmsg;
     let mylabel = document.getElementById("spellingBee");
     mylabel.innerText = msg.text;
+
+    //Voice selection
+    let selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+    console.log(selectedOption);
+    msg.voice = voices.find((v) => v.name === selectedOption);
+    //Voice selection end
+
+
     window.speechSynthesis.speak(msg);
     if (msg.text !== endMsg) {
         let anchor = document.createElement("a");
