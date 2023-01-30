@@ -1,13 +1,23 @@
 let sentence = new SpeechSynthesisUtterance();
-const baseurl = 'https://api.dictionaryapi.dev/api/v2/entries/en/';
+//const baseurl = 'https://api.dictionaryapi.dev/api/v2/entries/en/';
+const baseurl = 'https://www.dictionaryapi.com/api/v3/references/sd4/json/'
+const learnerKey = '625403ae-a4e0-499b-a440-23e4ead433fc';
 const definition = document.getElementById('_definitions_');
+// const fetchWordDefinitions = async word => {
+//     console.log(`Making request for definitions of ${word}...`);
+//     const response = await fetch(baseurl + word + '?key='+ learnerKey);
+//     const json = await response.json();
+//     return json[0].meanings
+//         .flatMap(m => m.definitions)
+//         .flatMap(d => d.definition);
+// };
 const fetchWordDefinitions = async word => {
     console.log(`Making request for definitions of ${word}...`);
-    const response = await fetch(baseurl + word);
+    const response = await fetch(baseurl + word + '?key='+ learnerKey);
     const json = await response.json();
-    return json[0].meanings
-        .flatMap(m => m.definitions)
-        .flatMap(d => d.definition);
+    return json[0].shortdef;
+       // .flatMap(m => m.definitions)
+       // .flatMap(d => d.definition);
 };
 const getWordDefinitions = () => {
     const word = msg.text;
