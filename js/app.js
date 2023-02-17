@@ -48,3 +48,7 @@ function readSentence(obj) {
     //Voice selection end    
     window.speechSynthesis.speak(sentence);
 }
+
+function stopReload(){
+    return confirm("Reload ??? Reset ?? \n r OK or Cancel.");
+}
