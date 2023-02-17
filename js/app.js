@@ -15,7 +15,9 @@ const fetchWordDefinitions = async word => {
     console.log(`Making request for definitions of ${word}...`);
     const response = await fetch(baseurl + word + '?key='+ learnerKey);
     const json = await response.json();
-    return json[0].shortdef;
+    return json.flatMap(m => m.shortdef);
+    
+        //    return json[0].shortdef;
        // .flatMap(m => m.definitions)
        // .flatMap(d => d.definition);
 };
