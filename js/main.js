@@ -48,12 +48,28 @@ synth.onvoiceschanged = function() {
 
 function readAWord() {
     let lessonChoosen = document.querySelector("#chooseLesson").value;
+
+    if(lessonChoosen != "4"){
+        //Read from local storage and update array
+        let spellingWords = localStorage.getItem("spellingBee_"+lessonChoosen);
+        try {
+            spellingBee[lessonChoosen] = spellingWords ? JSON.parse(spellingWords) : spellingBee[lessonChoosen];
+        } catch (error) {
+            console.log("Not found");
+        }
+    }
+    //complete read from local storage
+
     if (spellingBee[lessonChoosen].length) {
         msg.text = spellingBee[lessonChoosen].splice(spellingBee[lessonChoosen].length * Math.random() | 0, 1)[
             0];
     } else {
         //document.getElementById("btn-next").setAttribute("data-disabled","disabled")
         msg.text = endMsg;
+    }
+    if(lessonChoosen != "4"){
+        //Write to local storage
+        localStorage.setItem("spellingBee_"+lessonChoosen, JSON.stringify(spellingBee[lessonChoosen]));
     }
     mymessage = msg.text;
     let mylabel = document.getElementById("spellingBee");
@@ -148,6 +164,14 @@ function setRetestWords() {
 function printSpellingList(idx) {
     let divElem = document.createElement('div');
     spellingBee[idx].sort();
+
+    let reset_anchor = document.createElement("a");
+    reset_anchor.setAttribute('onclick', 'resetStorage("' + idx + '")');
+    reset_anchor.setAttribute('class', 'resetWordList');
+    reset_anchor.innerText = "Refresh "+(idx+1);
+    reset_anchor.href = "javascript:void(0)";
+    divElem.appendChild(reset_anchor);
+
     for (let i = 0; i < spellingBee[idx].length; i++) {
         let anchor = document.createElement("a");
         anchor.setAttribute('onclick', 'speakLoud("' + spellingBee[idx][i] + '")');
@@ -161,6 +185,24 @@ function printSpellingList(idx) {
     spellingLists.replaceChildren();
     spellingLists.appendChild(divElem);
 }
+function resetStorage(idx){
+    localStorage.removeItem("spellingBee_"+idx);
+    window.location.reload();
+}
+function resetStorageAll(){
+    try {
+        localStorage.removeItem("spellingBee_0");
+        localStorage.removeItem("spellingBee_1");
+        localStorage.removeItem("spellingBee_2");
+        localStorage.removeItem("spellingBee_3");
+        localStorage.removeItem("spellingBee_4");
+        window.location.reload();
+    } catch (error) {
+        window.location.reload();
+    }
+
+}
+
 
 function speakLoud(txtmsg) {
     msg.text = txtmsg;

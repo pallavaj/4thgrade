@@ -102,3 +102,19 @@ a.speakWord {
 #voiceSelect{
     display: none;
 }
+a.resetWordList {
+    color: red;
+    text-decoration: none;
+    font-size: 120%;
+    background-color: ivory;
+    padding: 0px 4px 10px;
+    display: block;
+}
+li.subpageslinks.refresh {
+    font-size: 102%;
+    padding-bottom: 10px;
+}
+
+li.subpageslinks.refresh a {
+    border:1px solid red
+}
